@@ -1,4 +1,4 @@
-package com.example.ths
+package com.exemple.THS
 
 import io.flutter.embedding.android.FlutterActivity
 
