@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:ths/View/Screen_Details/Interventionannul%C3%A9.dart';
 import 'package:ths/View/Screen_Details/Login_Screen.dart';
@@ -11,8 +12,8 @@ import 'View/Screen_Details/SignUp.dart';
 import 'View/Widgets/API/maps.dart';
 
 void main() async {
-  //WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 

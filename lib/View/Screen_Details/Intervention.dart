@@ -2,7 +2,6 @@ import 'package:external_path/external_path.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:open_file/open_file.dart';
 import 'package:ths/View/Widgets/Textfield.dart';
 import 'package:ths/View/Widgets/button.dart';
 import 'package:ths/View/Widgets/drawer.dart';

@@ -1,39 +1,55 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ths/Res/AppContextExtension.dart';
 import 'package:ths/View_Model/AppbarModelView.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'dart:core';
 
-class Messanger extends StatefulWidget {
-  const Messanger({Key? key}) : super(key: key);
+class Messanger extends StatelessWidget {
 
-  @override
-  _MessangerState createState() => _MessangerState();
-}
-
-class _MessangerState extends State<Messanger> {
   @override
   Widget build(BuildContext context) {
     var data = AppbarWidget();
-    return Scaffold(
-      backgroundColor: Colors.white,
+     return Scaffold(
       appBar: AppBar(
-        title: Text(data.admin),
-        centerTitle: true,
-        backgroundColor: context.resources.color.bleumarineO,
-      ),
-      body:Column(
-        children: [
-          MessageBubble(
-              "Le contenu du message diffuser par l'admin",),
-        ],
-      )
-    );
+          title: Text(data.admin),
+          centerTitle: true,
+          backgroundColor: context.resources.color.bleumarineO,
+        ),
+       body:
+         StreamBuilder(
+          stream: FirebaseFirestore.instance.collection('Messages').orderBy('createdAt',descending: false).snapshots() ,
+          builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (!snapshot.hasData) {
+              return Center(child: CircularProgressIndicator());
+            }
+            final user = FirebaseAuth.instance.currentUser;
+            return ListView.builder(
+              itemCount: snapshot.data!.docs.length,
+              itemBuilder: (context, index) {
+                return MessageBubble(
+                  snapshot.data!.docs[index]['text'],
+                  snapshot.data!.docs[index]['createdAt'],
+
+                );
+
+              },
+            );
+          },
+    ),
+       
+     );
   }
 }
 
 class MessageBubble extends StatelessWidget {
-  MessageBubble(this.message);
+  MessageBubble(this.message,this.time);
   final String message;
+  final String time;
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +115,7 @@ class MessageBubble extends StatelessWidget {
                       Container(
                         width: size.width*0.42,
                         child: Text(
-                          'Envoyé le 12/12/2022 à 08:50',
+                          'Envoyé le '+time,
                           style: TextStyle(color: Colors.grey[800],fontSize: 10,fontWeight: FontWeight.bold),
                           textAlign: TextAlign.justify,
                         ),

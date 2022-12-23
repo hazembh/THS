@@ -6,7 +6,6 @@ abstract class BaseColors {
 
   Color get bleuciel;
 
-
   Color get white;
 
   Color get black;
@@ -14,6 +13,7 @@ abstract class BaseColors {
   Color get bleumarineO;
 
   Color get bleumarine;
+  Color get RedColor;
 
 
 }

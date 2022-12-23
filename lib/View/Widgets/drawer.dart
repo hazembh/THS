@@ -30,7 +30,7 @@ Widget Drawers({
         Content(text: phone, icon: Icons.phone, ontap: () {}, context: context),
         Content(
             text: 'Rendez-vous',
-            icon: Icons.date_range,
+              icon: Icons.date_range,
             ontap: () {
               Navigator.pushNamed(context, '/PrisedeRDV');
             },

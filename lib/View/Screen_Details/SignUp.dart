@@ -4,6 +4,9 @@ import 'package:ths/Res/AppContextExtension.dart';
 import 'package:ths/View/Widgets/Textfield.dart';
 import 'package:ths/View_Model/LoginViewModel.dart';
 import 'package:ths/View_Model/SignUpViewModel.dart';
+import 'package:ths/View_Model/validations.dart';
+
+import 'Login_Screen.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -13,11 +16,32 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  var data = LoginModelView();
+  var data2 = SignUpModelView();
+  @override
+  TextEditingController email = TextEditingController();
+  TextEditingController repassword = TextEditingController();
+  TextEditingController password = TextEditingController();
+  TextEditingController nom = TextEditingController();
+  TextEditingController cin = TextEditingController();
+  TextEditingController car = TextEditingController();
+  TextEditingController phone = TextEditingController();
+
+ /*void dispose() {
+    super.dispose();
+    email.dispose();
+    repassword.dispose();
+    password.dispose();
+    nom.dispose();
+    cin.dispose();
+    car.dispose();
+    phone.dispose();
+  }*/
   @override
   Widget build(BuildContext context) {
-    var data = LoginModelView();
-    var data2 = SignUpModelView();
     var size = MediaQuery.of(context).size;
+
+
     return Scaffold(
         backgroundColor: context.resources.color.white,
         body: SingleChildScrollView(
@@ -80,19 +104,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             ],
                           ),
                           TextFielde(
-                              value: data.email_label, icon: Icons.email),
+                              value: data.email_label, icon: Icons.email, controller: email),
                           TextFielde(
-                              value: data2.nom, icon: Icons.account_box_sharp),
-                          TextFielde(value: data2.CIN, icon: Icons.credit_card),
-                          TextFielde(value: data2.car, icon: Icons.car_rental),
-                          TextFielde(value: data2.tel, icon: Icons.phone),
+                              value: data2.nom, icon: Icons.account_box_sharp, controller: nom),
+                          TextFielde(value: data2.CIN, icon: Icons.credit_card, controller: cin),
+                          TextFielde(value: data2.car, icon: Icons.car_rental, controller: car),
+                          TextFielde(value: data2.tel, icon: Icons.phone, controller: phone),
                           TextFil(
                             value: data.mot_passe_label,
-                            icon: Icons.lock,
+                            icon: Icons.lock, controller: password,
                           ),
                           TextFil(
                             value: data2.repMotdepasse,
-                            icon: Icons.lock,
+                            icon: Icons.lock, controller: repassword,
                           ),
                         ],
                       ),
@@ -124,7 +148,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         width: 170,
                         height: 40,
                         child: RaisedButton(
-                          onPressed: () {},
+                          onPressed: (){
+                                validations(
+                                context,
+                                email,
+                                nom,
+                                cin,
+                                car,
+                                phone,
+                                password,
+                                repassword);
+                          },
                           color: context.resources.color.bleumarineO,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8)),

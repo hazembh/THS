@@ -36,6 +36,8 @@ class AppColors implements BaseColors {
   Color get bleumarine => Color.fromRGBO(  0, 36, 147,1);
   @override
   Color get bleumarineO => Color.fromRGBO(  0, 36, 147,0.75);
+  @override
+  Color get RedColor =>Colors.red;
 
 
 

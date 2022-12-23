@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 Widget TextFielde({
   required String value,
   required IconData icon,
-  // required TextEditingController controller
+  required TextEditingController controller
 }) {
   return Padding(
     padding: EdgeInsets.symmetric(horizontal: 35, vertical: 5),
     child: TextFormField(
-      //controller: controller,
+      controller: controller,
       decoration: InputDecoration(
         border: UnderlineInputBorder(),
         labelText: value,
@@ -22,13 +22,12 @@ Widget TextFielde({
 class TextFil extends StatefulWidget {
   late String value;
   late IconData icon;
-
-  //late TextEditingController controller;
+  late TextEditingController controller;
 
   TextFil({
     required this.value,
     required this.icon,
-    //required this.controller,
+    required this.controller,
   });
 
   @override
@@ -44,7 +43,7 @@ class _TextFilState extends State<TextFil> {
       padding: EdgeInsets.symmetric(horizontal: 35, vertical: 5),
       child: TextFormField(
         obscureText: passwordobscured,
-        //controller: widget.controller,
+        controller: widget.controller,
         decoration: InputDecoration(
             border: UnderlineInputBorder(),
             labelText: widget.value,

@@ -4,6 +4,9 @@ import 'package:ths/Res/AppContextExtension.dart';
 import 'package:ths/View/Widgets/Textfield.dart';
 import 'package:ths/View/Widgets/button.dart';
 import 'package:ths/View_Model/LoginViewModel.dart';
+import 'package:ths/View_Model/validations.dart';
+
+import 'dashboard.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -15,6 +18,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   @override
   var data = LoginModelView();
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
 
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -87,10 +92,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             height: size.height * 0.04,
                           ),
                           TextFielde(
-                              icon: Icons.email, value: data.email_label),
+                              icon: Icons.email, value: data.email_label, controller: email),
                           TextFil(
                             value: data.mot_passe_label,
-                            icon: Icons.lock,
+                            icon: Icons.lock, controller: password,
                           ),
                           SizedBox(
                             height: size.height * 0.07,
@@ -144,7 +149,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 color1: context.resources.color.bleumarineO,
                                 color2: context.resources.color.white,
                                 onTap: () {
-                                  Navigator.pushNamed(context, '/RDV');
+                                 validation(context, email, password,loginUser(context, email, password, Dashboard()));
                                 })),
                       ],
                     ),
